@@ -1,0 +1,29 @@
+== Prawn Renderer
+
+Prawn Renderer is a Renderer plugin for Rails that lets you create PDF views.
+All you have to do is setup a respond_to for pdf in your controller's action
+and then create a view file with the extension .pdf.prawn.
+
+The main difference between this and prawnto is that you have access to your
+normal controller instance variables like a normal rails view. Also you don't
+put 'pdf.*' for all the pdf commands.
+
+== Installation
+
+  ./script/plugin install http://github.com/Dawnthorn/prawn-renderer.git
+
+Here's an example action for a controller:
+
+  def show
+    @invoice = Invoice.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf
+    end
+  end
+ 
+Here's the corresponding view in views/invoices/show.pdf.prawn:
+
+  text("Hello #{@invoice.id}")
+
+
